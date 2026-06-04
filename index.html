@@ -8,41 +8,26 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Undangan Valdi & Cika</title>
 
-<!-- Pustaka External -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-  body { 
-    font-family: "Poppins", sans-serif; 
-    background: #FDFBF7; 
-    scroll-behavior: smooth; 
-    overflow-x: hidden; 
-  } 
+  body { font-family: "Poppins", sans-serif; background: #FDFBF7; scroll-behavior: smooth; overflow-x: hidden; } 
   .font-serif { font-family: "Playfair Display", serif; } 
   .font-script { font-family: "Great Vibes", cursive; } 
   [data-lucide] { width: 18px; height: 18px; } 
   
-  /* Animasi */
   .animate-in { animation: fadeInUp 1s ease-out forwards; } 
-  @keyframes fadeInUp { 
-    from { opacity: 0; transform: translateY(30px); } 
-    to { opacity: 1; transform: translateY(0); } 
-  } 
-  @keyframes fadeOutUp { 
-    from { opacity: 1; transform: translateY(0); } 
-    to { opacity: 0; transform: translateY(-100%); } 
-  } 
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } } 
+  @keyframes fadeOutUp { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-100%); } } 
   .animate-out-up { animation: fadeOutUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; } 
   
-  /* Tema Warna */
   .text-theme-gold { color: #A68B5B; } 
   .border-theme-gold { border-color: #A68B5B; } 
   .bg-theme-gold { background-color: #A68B5B; }
   
-  /* Scrollbar Kustom untuk Kotak Ucapan */
   .custom-scrollbar::-webkit-scrollbar { width: 4px; }
   .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
   .custom-scrollbar::-webkit-scrollbar-thumb { background: #A68B5B; border-radius: 4px; }
@@ -50,11 +35,10 @@
 </head>
 <body>
 
-<!-- Overlay Pembuka -->
-<div id="overlay" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-cover bg-center text-white p-8 text-center" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://drive.google.com/thumbnail?sz=w400-h400&id=1AMUDxI3xBZKdmLyhUJp2H_m1WqkGAiEU');">
+<div id="overlay" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black bg-cover bg-center text-white p-8 text-center" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://drive.google.com/thumbnail?sz=w1000-h1000&id=1AMUDxI3xBZKdmLyhUJp2H_m1WqkGAiEU');">
   <div>
     <p class="text-[11px] uppercase tracking-[0.5em] mb-4 opacity-80">The Wedding Of</p>
-    <h1 class="text-6xl font-script mb-8">VALDI & CIKA</h1>
+    <h1 class="text-6xl font-script mb-8">Valdi & Cika</h1>
     <div class="mb-10 animate-in">
       <p class="text-xs opacity-70 mb-2 uppercase tracking-widest">Kepada Bapak/Ibu/Saudara/i:</p>
       <h3 id="guest-target" class="text-2xl font-serif italic font-bold">Tamu Undangan</h3>
@@ -65,36 +49,30 @@
   </div>
 </div>
 
-<!-- Musik Latar (Tersembunyi) -->
 <div id="music-container" style="position:fixed; top:-999px; left:-999px;"></div>
 
-<!-- Kontainer Utama (Responsif Maks 480px untuk nuansa aplikasi) -->
 <div class="max-w-[480px] mx-auto bg-white shadow-2xl min-h-screen relative">
   <iframe width="1" height="1" src="https://www.youtube.com/watch?v=qHROCogLUGE&list=RDqHROCogLUGE" frameborder="0" allow="autoplay; encrypted-media" class="absolute opacity-0"></iframe>
   
-  <!-- Bagian Hero -->
   <div class="py-20 px-8 text-center relative overflow-hidden">
     <svg viewBox="0 0 200 200" class="absolute pointer-events-none z-10 w-32 h-32 top-0 left-0 -rotate-90 origin-top-left" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.6"><path d="M40 160C60 130 110 120 150 140" stroke="#8A9A5B" stroke-width="1.5" stroke-linecap="round"></path><ellipse cx="55" cy="140" rx="14" ry="7" transform="rotate(-35 55 140)" fill="#A9BA9D"></ellipse><ellipse cx="85" cy="128" rx="12" ry="6" transform="rotate(-15 85 128)" fill="#BCCFB0"></ellipse><ellipse cx="115" cy="132" rx="10" ry="5" transform="rotate(20 115 132)" fill="#A9BA9D"></ellipse><path d="M110 130L145 95" stroke="#D1C4B2" stroke-width="0.8" stroke-linecap="round"></path><circle cx="130" cy="100" r="4.5" fill="#F8C8C8"></circle><circle cx="142" cy="108" r="4" fill="#FAD0D0"></circle><circle cx="148" cy="94" r="3.5" fill="#F8C8C8"></circle></g></svg>
     <svg viewBox="0 0 200 200" class="absolute pointer-events-none z-10 w-32 h-32 bottom-0 right-0 rotate-90 origin-bottom-right" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.6"><path d="M40 160C60 130 110 120 150 140" stroke="#8A9A5B" stroke-width="1.5" stroke-linecap="round"></path><ellipse cx="55" cy="140" rx="14" ry="7" transform="rotate(-35 55 140)" fill="#A9BA9D"></ellipse><ellipse cx="85" cy="128" rx="12" ry="6" transform="rotate(-15 85 128)" fill="#BCCFB0"></ellipse><ellipse cx="115" cy="132" rx="10" ry="5" transform="rotate(20 115 132)" fill="#A9BA9D"></ellipse><path d="M110 130L145 95" stroke="#D1C4B2" stroke-width="0.8" stroke-linecap="round"></path><circle cx="130" cy="100" r="4.5" fill="#F8C8C8"></circle><circle cx="142" cy="108" r="4" fill="#FAD0D0"></circle><circle cx="148" cy="94" r="3.5" fill="#F8C8C8"></circle></g></svg>
     <div class="animate-in mt-6">
       <p class="text-[10px] sm:text-xs uppercase tracking-[0.5em] text-theme-gold mb-8 font-medium">The Wedding Celebration Of</p>
-      <h1 class="text-5xl font-serif text-slate-800 mb-2 tracking-tighter">VALDI</h1>
+      <h1 class="text-5xl font-serif text-slate-800 mb-2 tracking-tighter">Valdi</h1>
       <div class="text-4xl font-script text-theme-gold my-2">&amp;</div>
-      <h1 class="text-5xl font-serif text-slate-800 mb-10 tracking-tighter">CIKA</h1>
+      <h1 class="text-5xl font-serif text-slate-800 mb-10 tracking-tighter">Cika</h1>
       <p class="text-xs sm:text-sm font-serif text-slate-500 tracking-[0.2em] font-bold italic">27 Juni 2026</p>
     </div>
   </div>
 
-  <!-- Kutipan Ayat -->
   <div class="py-16 px-10 text-center bg-white/30 backdrop-blur-sm border-y border-theme-gold/10">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="quote" aria-hidden="true" class="lucide lucide-quote mx-auto text-theme-gold/20 mb-6" style="width: 32px; height: 32px;"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"></path></svg>
     <p class="text-xs sm:text-sm text-slate-600 italic leading-relaxed font-light font-serif animate-in">"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."</p>
   </div>
 
-  <!-- Profil Mempelai -->
   <div class="py-16 px-6 sm:px-8 text-center relative">
     <h3 class="font-serif text-2xl mb-12 text-slate-800 tracking-widest uppercase italic">MEMPELAI</h3>
-    
     <div class="mb-20 last:mb-0 animate-in">
       <div class="relative inline-block mb-6">
         <div class="absolute inset-0 border border-theme-gold rounded-full -m-2.5 opacity-40"></div>
@@ -104,7 +82,6 @@
       <p class="text-[10px] sm:text-xs text-theme-gold font-bold uppercase tracking-[0.3em] mb-2">Putra dari</p>
       <p class="text-xs text-slate-500 font-medium px-4 leading-relaxed italic">ELDHIE &amp; ARUNI MUNDA, SE</p>
     </div>
-    
     <div class="mb-10 animate-in">
       <div class="relative inline-block mb-6">
         <div class="absolute inset-0 border border-theme-gold rounded-full -m-2.5 opacity-40"></div>
@@ -116,11 +93,9 @@
     </div>
   </div>
 
-  <!-- Jadwal & Lokasi -->
   <div class="py-16 px-6 bg-white/50 relative overflow-hidden backdrop-blur-sm border-y border-theme-gold/5">
     <svg viewBox="0 0 200 200" class="absolute pointer-events-none z-10 w-32 h-32 top-0 right-0 rotate-90 scale-75" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.6"><path d="M40 160C60 130 110 120 150 140" stroke="#8A9A5B" stroke-width="1.5" stroke-linecap="round"></path><ellipse cx="55" cy="140" rx="14" ry="7" transform="rotate(-35 55 140)" fill="#A9BA9D"></ellipse><ellipse cx="85" cy="128" rx="12" ry="6" transform="rotate(-15 85 128)" fill="#BCCFB0"></ellipse><ellipse cx="115" cy="132" rx="10" ry="5" transform="rotate(20 115 132)" fill="#A9BA9D"></ellipse><path d="M110 130L145 95" stroke="#D1C4B2" stroke-width="0.8" stroke-linecap="round"></path><circle cx="130" cy="100" r="4.5" fill="#F8C8C8"></circle><circle cx="142" cy="108" r="4" fill="#FAD0D0"></circle><circle cx="148" cy="94" r="3.5" fill="#F8C8C8"></circle></g></svg>
     <h3 class="font-serif text-2xl mb-10 text-center text-slate-800 tracking-widest uppercase italic">JADWAL &amp; LOKASI</h3>
-    
     <div class="mb-12 text-center">
       <div class="text-theme-gold font-script text-4xl mb-4">Akad Nikah</div>
       <div class="bg-white/80 py-6 px-4 rounded-[2rem] border border-theme-gold/10 shadow-sm mb-6 mx-4">
@@ -131,7 +106,6 @@
       <p class="text-[11px] sm:text-xs text-slate-500 px-6 italic mb-6 leading-relaxed">Jl. Pangeran Diponegoro, Madras Hulu, Kec. Medan Polonia, Kota Medan, Sumatera Utara</p>
       <a href="https://maps.app.goo.gl/kncpAQDwKPNzcpVX7" target="_blank" class="inline-block border border-theme-gold text-theme-gold px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm hover:bg-theme-gold hover:text-white transition-colors">Peta Lokasi</a>
     </div>
-    
     <div class="mb-6 text-center">
       <div class="text-theme-gold font-script text-4xl mb-4">Resepsi</div>
       <div class="bg-white/80 py-6 px-4 rounded-[2rem] border border-theme-gold/10 shadow-sm mb-6 mx-4">
@@ -144,7 +118,6 @@
     </div>
   </div>
 
-  <!-- Love Story -->
   <div class="py-16 px-8 text-center bg-white relative">
     <h3 class="font-serif text-2xl mb-12 text-slate-800 tracking-widest uppercase italic">LOVE STORY</h3>
     <div class="space-y-12 relative before:content-[''] before:absolute before:left-1/2 before:top-0 before:bottom-0 before:w-[1px] before:bg-theme-gold/20">
@@ -166,11 +139,9 @@
     </div>
   </div>
 
-  <!-- Gallery -->
   <div class="py-16 px-4 bg-[#fcfaf7]">
     <h3 class="font-serif text-2xl text-center mb-10 text-slate-800 uppercase italic tracking-widest">GALLERY</h3>
     <div class="grid grid-cols-2 gap-3">
-      <!-- Penggunaan gambar -->
       <div class="overflow-hidden rounded-xl shadow-sm border border-white h-40 sm:h-48"><img src="https://drive.google.com/thumbnail?sz=w400-h400&amp;id=1AMUDxI3xBZKdmLyhUJp2H_m1WqkGAiEU" class="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-1000" loading="lazy"></div>
       <div class="overflow-hidden rounded-xl shadow-sm border border-white h-40 sm:h-48"><img src="https://drive.google.com/thumbnail?sz=w400-h400&amp;id=1yG__fK63O27L27SKUzT9gvGtCiac4F2m" class="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-1000" loading="lazy"></div>
       <div class="overflow-hidden rounded-xl shadow-sm border border-white h-40 sm:h-48"><img src="https://drive.google.com/thumbnail?sz=w400-h400&amp;id=1Mf28vOkhhnslEXp_AtLRojKmqDW-cJd4" class="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-1000" loading="lazy"></div>
@@ -184,19 +155,24 @@
     </div>
   </div>
 
-  <!-- Hadiah -->
   <div class="py-16 px-6 sm:px-8 text-center bg-white">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="gift" aria-hidden="true" class="lucide lucide-gift mx-auto text-theme-gold mb-4" style="width: 36px; height: 36px;"><path d="M12 7v14"></path><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"></path><rect x="3" y="7" width="18" height="4" rx="1"></rect></svg>
     <h3 class="font-serif text-2xl mb-8 text-slate-800 uppercase italic tracking-widest">HADIAH</h3>
     
-    <div id="gift-content" class="space-y-6 animate-in">
-      <div class="p-8 border border-theme-gold/10 rounded-[2rem] bg-[#fdfbf7] shadow-sm animate-in mx-2">
+    <!-- Tombol Laci Hadiah yang ditambahkan kembali -->
+    <button id="gift-btn" onclick="toggleGifts()" class="w-4/5 py-4 bg-white border border-theme-gold/50 text-theme-gold rounded-full text-xs font-bold uppercase tracking-widest shadow-sm hover:bg-theme-gold hover:text-white transition-colors mx-auto mb-8">
+      Buka Amplop Digital
+    </button>
+    
+    <!-- Konten hadiah disembunyikan di awal ('hidden') -->
+    <div id="gift-content" class="space-y-6 hidden">
+      <div class="p-8 border border-theme-gold/10 rounded-[2rem] bg-[#fdfbf7] shadow-sm mx-2">
         <p class="text-[11px] font-bold text-slate-500 uppercase mb-3 tracking-widest">Bank Mandiri</p>
         <p class="text-xl sm:text-2xl font-mono font-bold text-slate-800 mb-2 tracking-tighter italic">1060012652767</p>
         <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-6">A/N MIESKA RACHMADINA LUBIS</p>
         <button onclick="handleCopy('1060012652767')" class="w-full py-3 bg-white border border-theme-gold/20 text-theme-gold rounded-full text-[11px] font-bold uppercase tracking-widest shadow-sm hover:bg-theme-gold hover:text-white transition-colors">Salin No. Rekening</button>
       </div>
-      <div class="p-8 border border-theme-gold/10 rounded-[2rem] bg-[#fdfbf7] shadow-sm animate-in mx-2">
+      <div class="p-8 border border-theme-gold/10 rounded-[2rem] bg-[#fdfbf7] shadow-sm mx-2">
         <p class="text-[11px] font-bold text-slate-500 uppercase mb-3 tracking-widest">BANK BNI</p>
         <p class="text-xl sm:text-2xl font-mono font-bold text-slate-800 mb-2 tracking-tighter italic">1210651504</p>
         <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-6">A/N RIVALDI</p>
@@ -205,38 +181,32 @@
     </div>
   </div>
 
-  <!-- Ucapan & RSVP -->
   <div class="py-16 px-6 bg-white/50 backdrop-blur-sm border-y border-theme-gold/10 relative">
     <h3 class="font-serif text-2xl mb-6 text-center text-slate-800 italic uppercase tracking-widest">Ucapan &amp; RSVP</h3>
-    
     <div class="p-5 bg-white rounded-2xl shadow-xl border border-slate-100 space-y-4 mb-10">
       <input id="in-name" class="w-full p-3 border border-slate-200 rounded-xl text-xs sm:text-sm bg-slate-50 focus:outline-none focus:border-theme-gold" placeholder="Nama" value="">
       <textarea id="in-wish" class="w-full p-3 border border-slate-200 rounded-xl text-xs sm:text-sm bg-slate-50 h-24 focus:outline-none focus:border-theme-gold" placeholder="Berikan ucapan atau doa restu..."></textarea>
-      
-      <!-- Input status tersembunyi -->
       <input type="hidden" id="in-status-val" value="Hadir">
-      
       <div class="flex gap-2">
         <button id="btn-hadir" onclick="setStatus('Hadir')" class="flex-1 py-3 rounded-full text-xs font-bold bg-slate-800 text-white transition-colors">Hadir</button>
         <button id="btn-tidak" onclick="setStatus('Tidak Hadir')" class="flex-1 py-3 rounded-full text-xs font-bold bg-slate-100 text-slate-500 transition-colors">Tidak Hadir</button>
       </div>
-      
       <button onclick="sendRSVP()" class="w-full py-4 bg-[#716053] text-white rounded-full font-bold text-xs shadow-md hover:bg-[#5a4d42] transition-colors mt-2">Kirim Ucapan</button>
     </div>
     
     <div id="wishes-list" class="space-y-4 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
-      <!-- Data Mockup -->
       <div class="p-4 bg-white rounded-2xl shadow-sm border border-slate-100 flex gap-4 animate-in">
         <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 font-bold shrink-0 text-sm">E</div>
         <div class="flex-1">
-          <p class="font-bold text-xs text-slate-800 mb-1">eff</p>
-          <p class="text-[11px] text-slate-500 italic">"Selamat ya, semoga lancar sampai hari H!"</p>
+          <div class="flex items-center mb-1">
+            <p class="font-bold text-xs text-slate-800">eff</p>
+          </div>
+          <p class="text-[11px] text-slate-600 italic leading-relaxed">"Selamat ya, semoga lancar sampai hari H!"</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
   <div class="py-16 px-6 bg-slate-950 text-white text-center relative overflow-hidden">
     <div class="py-10 border-t border-white/10 opacity-90 relative z-10 animate-in">
       <h3 class="font-script text-5xl mb-6 text-theme-gold italic">Terima Kasih</h3>
@@ -251,10 +221,8 @@
 </div>
 
 <script>
-// Render Icon
 lucide.createIcons();
 
-// Tangkap Parameter URL untuk Nama Tamu
 const params = new URLSearchParams(window.location.search);
 const to = params.get("to");
 if(to) { 
@@ -262,7 +230,6 @@ if(to) {
   document.getElementById("in-name").value = to; 
 }
 
-// Fungsi Salin Rekening ke Clipboard
 function handleCopy(text) { 
   const el = document.createElement("textarea"); 
   el.value = text; 
@@ -273,7 +240,15 @@ function handleCopy(text) {
   alert("Nomor rekening " + text + " berhasil disalin!"); 
 }
 
-// Fungsi Atur Status RSVP
+// Fungsi Efek Laci Hadiah yang dikembalikan
+window.toggleGifts = function() { 
+  const c = document.getElementById("gift-content"); 
+  const b = document.getElementById("gift-btn"); 
+  c.classList.remove("hidden"); 
+  c.classList.add("animate-in"); 
+  b.classList.add("hidden"); 
+};
+
 window.setStatus = function(status) {
   document.getElementById("in-status-val").value = status;
   const btnHadir = document.getElementById("btn-hadir");
@@ -288,7 +263,6 @@ window.setStatus = function(status) {
   }
 };
 
-// Koneksi MQTT untuk RSVP realtime
 const client = mqtt.connect("wss://broker.hivemq.com:8884/mqtt");
 client.on("connect", () => { 
   client.subscribe("linkzwire/wedding/bitterfly/v1/rsvp"); 
@@ -301,7 +275,6 @@ client.on("message", (topic, message) => {
     const item = document.createElement("div");
     item.className = "p-4 bg-white rounded-2xl shadow-sm border border-slate-100 flex gap-4 animate-in";
     
-    // Status Badge opsional
     const statusBadge = data.status === 'Hadir' 
         ? `<span class="text-[9px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full ml-2">Hadir</span>` 
         : `<span class="text-[9px] bg-red-100 text-red-700 px-2 py-0.5 rounded-full ml-2">Tidak Hadir</span>`;
@@ -323,7 +296,6 @@ client.on("message", (topic, message) => {
   }
 });
 
-// Fungsi Kirim RSVP
 window.sendRSVP = function() {
   const n = document.getElementById("in-name").value;
   const w = document.getElementById("in-wish").value;
@@ -334,25 +306,18 @@ window.sendRSVP = function() {
     return;
   }
   
-  const payload = JSON.stringify({
-    name: n, 
-    wish: w, 
-    status: s, 
-    id: Math.random().toString(36).substr(2,9)
-  });
-  
+  const payload = JSON.stringify({ name: n, wish: w, status: s, id: Math.random().toString(36).substr(2,9) });
   client.publish("linkzwire/wedding/bitterfly/v1/rsvp", payload, {qos:1, retain:true});
   document.getElementById("in-wish").value = "";
   alert("Terima kasih atas ucapan dan konfirmasi kehadiran Anda!");
 };
 
-// Fungsi Buka Undangan
+// Fungsi Membuka Undangan & Menjalankan Musik (Asli dari kode awal)
 document.getElementById("openBtn").onclick = function() {
   const o = document.getElementById("overlay"); 
   o.classList.add("animate-out-up"); 
   setTimeout(() => { o.style.display = "none"; }, 800);
   
-  // Mengaktifkan lagu saat undangan dibuka (autoplay restriction browser bypass)
   document.getElementById("music-container").innerHTML = '<iframe width="1" height="1" src="https://www.youtube.com/embed/qHROCogLUGE?autoplay=1&loop=1&playlist=qHROCogLUGE&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>';
 };
 </script>
